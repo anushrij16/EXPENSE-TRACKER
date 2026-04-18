@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Income</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI';
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #00c9ff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00a3cc;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Add Income</h2>
+
+  <form method="post">
+    <input type="text" name="source" placeholder="Source" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+
+    <!-- NEW -->
+    <input type="date" name="date" required>
+
+    <button type="submit">Add Income</button>
+</form>
+</body>
+</html>

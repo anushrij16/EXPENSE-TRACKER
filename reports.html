@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body {
+    background:#0f172a;
+    color:white;
+    text-align:center;
+}
+canvas {
+    max-width:400px;
+    margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📊 Financial Report</h2>
+
+<canvas id="chart"></canvas>
+
+<script>
+new Chart(document.getElementById('chart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Income', 'Expense'],
+        datasets: [{
+            data: [{{ income }}, {{ expense }}],
+            backgroundColor: ['#22c55e', '#ef4444']
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI';
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            color: white;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            background: #ff4b2b;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Add Expense</h2>
+
+   <form method="post">
+    <input type="text" name="category" placeholder="Category" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+
+    <!-- NEW -->
+    <input type="date" name="date" required>
+
+    <button type="submit">Add Expense</button>
+</form>
+
+</body>
+</html>

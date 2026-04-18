@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI';
+            background: #0f172a;
+            color: white;
+        }
+
+        .navbar {
+            background: #1e293b;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1d4ed8, #9333ea);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        h3 {
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #334155;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        tr:hover {
+            background: #475569;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .edit { background: #3b82f6; }
+        .delete { background: #ef4444; }
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>💰 Expense Tracker</h2>
+    <div class="nav-links">
+        <a href="/add_income">Income</a>
+        <a href="/add_expense">Expense</a>
+        <a href="/set_budget">Budget</a>
+        <a href="/add_loan">Loan</a> <!-- ✅ NEW -->
+        <a href="/reports">Reports</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">💵 Income <br> ₹{{ total_income }}</div>
+        <div class="card">💸 Expense <br> ₹{{ total_expense }}</div>
+        <div class="card">🎯 Budget <br> ₹{{ budget }}</div>
+        <div class="card">💰 Balance <br> ₹{{ balance }}</div>
+    </div>
+
+    <!-- INCOME -->
+    <h3>Income</h3>
+    <table>
+        <tr>
+            <th>Source</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+
+        {% for i in incomes %}
+        <tr>
+            <td>{{ i.source }}</td>
+            <td>₹{{ i.amount }}</td>
+            <td>{{ i.date.strftime('%d-%m-%Y') }}</td>
+            <td>
+                <a href="/edit_income/{{ i.id }}" class="btn edit">Edit</a>
+                <a href="/delete_income/{{ i.id }}" class="btn delete">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- EXPENSE -->
+    <h3>Expenses</h3>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th> <!-- ✅ NEW -->
+        </tr>
+
+        {% for e in expenses %}
+        <tr>
+            <td>{{ e.category }}</td>
+            <td>₹{{ e.amount }}</td>
+            <td>{{ e.date.strftime('%d-%m-%Y') }}</td>
+            <td>
+                <a href="/edit_expense/{{ e.id }}" class="btn edit">Edit</a>
+                <a href="/delete_expense/{{ e.id }}" class="btn delete">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- LOANS -->
+    <h3>Loans Given</h3>
+    <table>
+        <tr>
+            <th>Person</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+
+        {% for l in loans %}
+        <tr>
+            <td>{{ l.person }}</td>
+            <td>₹{{ l.amount }}</td>
+            <td>{{ l.date.strftime('%d-%m-%Y') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>
