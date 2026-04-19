@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Loan</title>
+</head>
+<body>
+
+<h2>Edit Loan</h2>
+
+<form method="POST">
+
+    <label>Person:</label><br>
+    <input type="text" name="person" value="{{ loan.person }}" required><br><br>
+
+    <label>Amount:</label><br>
+    <input type="number" name="amount" value="{{ loan.amount }}" required><br><br>
+
+    <label>Date:</label><br>
+    <input type="date" name="date" value="{{ loan.date.strftime('%Y-%m-%d') }}"><br><br>
+
+    <button type="submit">Update Loan</button>
+
+</form>
+
+<br>
+<a href="/">Back to Dashboard</a>
+
+</body>
+</html>
