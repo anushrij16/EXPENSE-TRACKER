@@ -92,12 +92,12 @@
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <h2>💰 Expense Tracker</h2>
+    <h2>💰 Anu's Expense Tracker</h2>
     <div class="nav-links">
         <a href="/add_income">Income</a>
         <a href="/add_expense">Expense</a>
         <a href="/set_budget">Budget</a>
-        <a href="/add_loan">Loan</a> <!-- ✅ NEW -->
+        <a href="/add_loan">Loan</a>
         <a href="/reports">Reports</a>
     </div>
 </div>
@@ -142,7 +142,7 @@
             <th>Category</th>
             <th>Amount</th>
             <th>Date</th>
-            <th>Action</th> <!-- ✅ NEW -->
+            <th>Action</th>
         </tr>
 
         {% for e in expenses %}
@@ -159,19 +159,35 @@
     </table>
 
     <!-- LOANS -->
-    <h3>Loans Given</h3>
+    <h3>Loans</h3>
     <table>
         <tr>
             <th>Person</th>
             <th>Amount</th>
+            <th>Type</th>
             <th>Date</th>
+            <th>Action</th>
         </tr>
 
-        {% for l in loans %}
+        {% for loan in loans %}
         <tr>
-            <td>{{ l.person }}</td>
-            <td>₹{{ l.amount }}</td>
-            <td>{{ l.date.strftime('%d-%m-%Y') }}</td>
+            <td>{{ loan.person }}</td>
+            <td>₹{{ loan.amount }}</td>
+
+            <td>
+                {% if loan.type == 'given' %}
+                    💸 Given
+                {% else %}
+                    💰 Taken
+                {% endif %}
+            </td>
+
+            <td>{{ loan.date.strftime('%d-%m-%Y') }}</td>
+
+            <td>
+                <a href="/edit_loan/{{ loan.id }}" class="btn edit">Edit</a>
+                <a href="/delete_loan/{{ loan.id }}" class="btn delete">Delete</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
